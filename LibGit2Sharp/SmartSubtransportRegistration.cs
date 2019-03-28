@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using LibGit2Sharp.Core;
 using LibGit2Sharp.Core.Handles;
@@ -84,7 +85,7 @@ namespace LibGit2Sharp
                 }
                 catch (Exception ex)
                 {
-                    Proxy.giterr_set_str(GitErrorCategory.Net, ex);
+                    Proxy.git_error_set_str(GitErrorCategory.Net, ex);
                 }
 
                 return (int)GitErrorCode.Error;
@@ -103,7 +104,7 @@ namespace LibGit2Sharp
                 }
                 catch (Exception ex)
                 {
-                    Proxy.giterr_set_str(GitErrorCategory.Net, ex);
+                    Proxy.git_error_set_str(GitErrorCategory.Net, ex);
                 }
 
                 return (int)GitErrorCode.Error;

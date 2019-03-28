@@ -2,34 +2,32 @@
 # see travis-ci.org for details
 
 language: csharp
-mono:
- - 3.12.0
- - 4.2.3
+dist: trusty
+dotnet: 2.1.401
+mono: none
+osx_image: xcode8.3
 
 os:
  - osx
  - linux
-
-env:
- global:
-  - MONO_OPTIONS=--debug
 
 before_install:
  - date -u
  - uname -a
  - env | sort
 
-solution: LibGit2Sharp.sln
+install:
+ - git fetch --unshallow
 
 # Build libgit2, LibGit2Sharp and run the tests
 script:
- - ./build.libgit2sharp.sh 'LEAKS_IDENTIFYING'
+ - ./buildandtest.sh 'LEAKS_IDENTIFYING'
 
 # Only watch the development branch
 branches:
  only:
-   - vNext
    - master
+   - /^maint.*/
 
 # Notify of build changes
 notifications:
